@@ -1,4 +1,4 @@
-package org.csulb.edu.raghu.keyword.util;
+package org.csulb.edu.keywordextraction.util;
 
 public class KeyWordExtractionConstants {
 

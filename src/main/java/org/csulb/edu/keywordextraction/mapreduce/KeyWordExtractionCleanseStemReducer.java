@@ -1,4 +1,4 @@
-package org.csulb.edu.raghu.keyword.keywordextraction;
+package org.csulb.edu.keywordextraction.mapreduce;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -13,9 +13,9 @@ import org.apache.hadoop.io.MapWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.Writable;
 import org.apache.hadoop.mapreduce.Reducer;
-import org.csulb.edu.raghu.keyword.keywordextraction.KeyWordExtractionDriver.KeyWordExtractionCounters;
-import org.csulb.edu.raghu.keyword.util.KeyWordCleanseReducerUtil;
-import org.csulb.edu.raghu.keyword.util.KeyWordExtractionConstants;
+import org.csulb.edu.keywordextraction.mapreduce.KeyWordExtractionDriver.KeyWordExtractionCounters;
+import org.csulb.edu.keywordextraction.util.KeyWordCleanseReducerUtil;
+import org.csulb.edu.keywordextraction.util.KeyWordExtractionConstants;
 
 public class KeyWordExtractionCleanseStemReducer extends Reducer<Text, MapWritable, Text, MapWritable> {
 

@@ -1,4 +1,4 @@
-package org.csulb.edu.raghu.keyword.keywordextraction;
+package org.csulb.edu.keywordextraction.mapreduce;
 
 import java.util.Iterator;
 import java.util.Map;

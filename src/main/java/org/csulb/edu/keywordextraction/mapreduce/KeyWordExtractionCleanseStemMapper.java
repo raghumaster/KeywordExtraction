@@ -1,4 +1,4 @@
-package org.csulb.edu.raghu.keyword.keywordextraction;
+package org.csulb.edu.keywordextraction.mapreduce;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,10 +13,10 @@ import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.MapWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
-import org.csulb.edu.raghu.keyword.keywordextraction.KeyWordExtractionDriver.KeyWordExtractionCounters;
-import org.csulb.edu.raghu.keyword.util.KeyWordCleanseMapperUtil;
-import org.csulb.edu.raghu.keyword.util.KeyWordExtractionConstants;
-import org.csulb.edu.raghu.keyword.util.Posting;
+import org.csulb.edu.keywordextraction.mapreduce.KeyWordExtractionDriver.KeyWordExtractionCounters;
+import org.csulb.edu.keywordextraction.util.KeyWordCleanseMapperUtil;
+import org.csulb.edu.keywordextraction.util.KeyWordExtractionConstants;
+import org.csulb.edu.keywordextraction.util.Posting;
 
 /*
  * @author Raghu Nandan & Goutam Tadi

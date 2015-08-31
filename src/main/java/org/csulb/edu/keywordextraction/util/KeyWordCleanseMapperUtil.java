@@ -1,4 +1,4 @@
-package org.csulb.edu.raghu.keyword.util;
+package org.csulb.edu.keywordextraction.util;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -35,13 +35,14 @@ public class KeyWordCleanseMapperUtil {
 		}
 		return stopWordsSet;
 	}
-public ArrayList<String> getCacheFiles(Context context) throws IOException{
-	ArrayList<String> cacheFileList = new ArrayList<String>();
-	Path[] cacheFiles = DistributedCache.getLocalCacheFiles(context.getConfiguration());
-	for (Path cacheFilePath : cacheFiles) {
-		cacheFileList.add(cacheFilePath.toString());
-	}
-	return cacheFileList;
+	
+	public ArrayList<String> getCacheFiles(Context context) throws IOException{
+		ArrayList<String> cacheFileList = new ArrayList<String>();
+		Path[] cacheFiles = DistributedCache.getLocalCacheFiles(context.getConfiguration());
+		for (Path cacheFilePath : cacheFiles) {
+			cacheFileList.add(cacheFilePath.toString());
+		}
+		return cacheFileList;
 	}
 
 }

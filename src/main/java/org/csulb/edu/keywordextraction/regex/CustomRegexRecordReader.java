@@ -1,4 +1,4 @@
-package org.csulb.edu.raghu.regex;
+package org.csulb.edu.keywordextraction.regex;
 
 import java.io.IOException;
 import java.util.regex.Matcher;
