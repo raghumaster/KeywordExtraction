@@ -7,11 +7,11 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.apache.hadoop.io.DoubleWritable;
-import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.MapWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.Writable;
+import org.apache.hadoop.mapreduce.Cluster;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.csulb.edu.keywordextraction.mapreduce.KeyWordExtractionDriver.KeyWordExtractionCounters;
 import org.csulb.edu.keywordextraction.util.KeyWordCleanseReducerUtil;
@@ -66,6 +66,8 @@ public class KeyWordExtractionCleanseStemReducer extends Reducer<Text, MapWritab
 		// Initialize the ReduceUtil
 		reduceUtil = new KeyWordCleanseReducerUtil();
 		// Get the total document count from the global counters
+		
+		Cluster cluster = new Cluster(context.getConfiguration());
 		totalDocumentCount = context.getCounter(KeyWordExtractionCounters.TOTALDOCUMENTS).getValue();
 	}
 

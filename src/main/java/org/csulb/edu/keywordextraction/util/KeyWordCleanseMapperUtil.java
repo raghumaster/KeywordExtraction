@@ -15,9 +15,10 @@ public class KeyWordCleanseMapperUtil {
 	
 	private Set<String> stopWordsSet;
 
-	/*
-	 * Method that extracts stop words from text files and adds them to the stop
-	 * words set
+	/**
+	 * Method that extracts stop words from text files and adds them to the stop words set
+	 * @param cacheFileList, list of files to be passed
+	 * @return hash set containing the stop words
 	 */
 	public Set<String> generateStopWords(ArrayList<String> cacheFileList) {
 		stopWordsSet = new HashSet<>();
@@ -29,13 +30,21 @@ public class KeyWordCleanseMapperUtil {
 				while ((str = br.readLine()) != null) {
 					stopWordsSet.add(str.toLowerCase());
 				}
+				br.close();
 			}
+			
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 		return stopWordsSet;
 	}
 	
+	/**
+	 * Get files from cache
+	 * @param context
+	 * @return List of file names containing the path from cache
+	 * @throws IOException
+	 */
 	public ArrayList<String> getCacheFiles(Context context) throws IOException{
 		ArrayList<String> cacheFileList = new ArrayList<String>();
 		Path[] cacheFiles = DistributedCache.getLocalCacheFiles(context.getConfiguration());

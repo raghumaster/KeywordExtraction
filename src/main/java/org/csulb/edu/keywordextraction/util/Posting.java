@@ -1,10 +1,10 @@
 package org.csulb.edu.keywordextraction.util;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
 
 //Java class for identifying a posting
 public class Posting {
@@ -14,23 +14,23 @@ public class Posting {
 	private List<String> tags;
 	private String codeSection;
 	private Map<String,Integer> tokens;
-	private static String fileNames[];
 	private  Set<String> stopWords ;
-	
-	
-	//Parameterized Constructor
-	/*
+		
+	/** Parameterized Constructor for initializing the posting object
 	 * If isTraining is true -> training data set
 	 * Else -> test data set (for test data set we don't have tags)
+	 * @param record Record retrieved by the Mapper
+	 * @param stopWords hash set containing all the stop words
 	 */
-	public Posting(String record,Set<String> stop,boolean isTraining){
-		stopWords = stop;
+	public Posting(String record, Set<String> stopWords, boolean isTraining) {
+		this.stopWords = stopWords;
 		tokens = new HashMap<>();
 		String[] input = record.toString().split(",");
 		int n = input.length;
 		this.id = Long.parseLong(input[0]);
 		this.title = cleanString(input[1]);
 		StringBuffer body = new StringBuffer();
+		
 		//For training data the last column is of the csv file is tags
 		if(isTraining){
 			for(int i=2;i<n-1;i++){
@@ -80,34 +80,36 @@ public class Posting {
 	}
 	
 	
-	/*
-	 *  Tokenization the given question using space as delimeter
+	/**
+	 *  Tokenization of the given input using space as delimeter and adding the tokens to a hash map along with frequency
+	 *  @param input, the input string to be tokenized
 	 */
-	public void addToTokensMap(String str){
+	public void addToTokensMap(String input) {
 		//Add the cleaned body to posting
-		String[] splitTokens = str.split(" ");
+		String[] splitTokens = input.split(" ");
 		String currentToken;
 		int count;
-		for(int i=0;i<splitTokens.length;i++){
+		for (int i=0;i<splitTokens.length;i++) {
 			currentToken = splitTokens[i];
-			if(!stopWords.contains(currentToken)){
-				if(tokens.containsKey(currentToken)){
+			if (!stopWords.contains(currentToken)) {
+				if (tokens.containsKey(currentToken)) {
 					count = tokens.get(currentToken);
 					tokens.put(currentToken, count+1);
-				}else{
+				}else {
 					tokens.put(currentToken,1);
 				}
 			}
 		}
 	}
 	
-	/*
-	 * Method for performing the cleaning 
+	/**
+	 * Method for performing the cleaning (or remove noises)
+	 * @param input, the input string to be cleaned 
 	 */
-	public static String cleanString(String str){
+	public static String cleanString(String input){
 		String cleanedStr;
 		//Convert to lowercase, 
-		cleanedStr = str.toLowerCase();
+		cleanedStr = input.toLowerCase();
 		//Remove all html tags 
 		cleanedStr = cleanedStr.replaceAll("\\<.*?>","");
 		//Remove special characters from body
@@ -118,26 +120,7 @@ public class Posting {
 		return cleanedStr;
 	}
 	
-	/*
-	 * Method that extracts stop words from text files and adds them to the stop words set
-	 
-	public static Set<String> generateStopWords(){
-		Set<String> stopWordsSet = new HashSet<>();
-		//String fileNames[] = {"C:\\Users\\RaghuNandan\\Documents\\Workspace\\Hadoop\\Samples\\stop-words\\stop-words_english_6_en.txt","C:\\Users\\RaghuNandan\\Documents\\Workspace\\Hadoop\\Samples\\stop-words\\stop-words_english_5_en.txt","C:\\Users\\RaghuNandan\\Documents\\Workspace\\Hadoop\\Samples\\stop-words\\stop-words_english_4_google_en.txt","C:\\Users\\RaghuNandan\\Documents\\Workspace\\Hadoop\\Samples\\stop-words\\stop-words_english_3_en.txt","C:\\Users\\RaghuNandan\\Documents\\Workspace\\Hadoop\\Samples\\stop-words\\stop-words_english_2_en.txt","C:\\Users\\RaghuNandan\\Documents\\Workspace\\Hadoop\\Samples\\stop-words\\stop-words_english_1_en.txt"};
-		try {
-			for(String file:fileNames){
-				BufferedReader br = new BufferedReader(new FileReader(file));
-				String str;
-				//Extract each line from the file
-				while((str = br.readLine())!=null){
-					stopWordsSet.add(str.toLowerCase());
-				}
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		return stopWordsSet;
-	}*/
+	//Getters and setters
 	
 	public String toString(){
 		//return id+": "+title+"\n"+body+"\n"+codeSection+"\n"+tags;

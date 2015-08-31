@@ -18,7 +18,7 @@ import org.csulb.edu.keywordextraction.util.KeyWordCleanseMapperUtil;
 import org.csulb.edu.keywordextraction.util.KeyWordExtractionConstants;
 import org.csulb.edu.keywordextraction.util.Posting;
 
-/*
+/**
  * @author Raghu Nandan & Goutam Tadi
  * Mapper class for 
  * 		1. reading the data from training data set 
